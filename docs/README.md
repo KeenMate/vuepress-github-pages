@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to Github Pages via Vuepress
 
 Vue Smart Table was created out of the need for a simple highly customizable data table plugin 
 that could take advantage of Vue's slots. It has no dependencies but Vue and because it 
