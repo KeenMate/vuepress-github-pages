@@ -49,4 +49,21 @@ git push -u origin gh-pages
         BUILD_DIR: docs/.vuepress/dist/ - if your Vuepress code is somewhere else change this
  ```
    
-
+ ## vuepress configuration
+  
+```
+module.exports = {
+  title: 'Github Pages Test', - Update to your repository title
+  base: '/github-pages-test/', - Update to your repository project name
+  description: 'Simple yet powerful Github Pages in Vuepress', - Update to your repository description
+  themeConfig: {
+    repo: 'keenmate/github-pages-test', - Update to your full Github repository path
+    docsDir: 'docs', - The rest change as you need
+    editLinks: true,
+    sidebarDepth: 1,
+    sidebar: [
+      '/'
+    ]
+  }
+}
+```
