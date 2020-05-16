@@ -44,7 +44,7 @@ jobs:
         # The message for the commit
         message: "New version created"
         # Name of the branch to use, if different from the one that triggered the workflow
-        ref: gh-pages# optional
+        # ref: gh-pages# optional
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.5.0
