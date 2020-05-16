@@ -22,40 +22,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: "Run npm i"
-      run: npm i
-      
-    - name: Build documentation
-      run: npm run docs:build
-    
-    - name: Add & Commit
-      uses: EndBug/add-and-commit@v4.1.0
-      with:
-        # Arguments for the git add command
-        add: "-A"
-        # The name of the user that will be displayed as the author of the commit
-        author_name: "Benjamin Horne" 
-        # The email of the user that will be displayed as the author of the commit
-        author_email: "benjamin.horne@keenmate.com"
-        # The directory where your repository is located. You should use actions/checkout first to set it up
-        # cwd: # optional, default is .
-        # Whether to use the force option on git add, in order to bypass eventual gitignores
-        # force: # optional, default is false
-        # The message for the commit
-        message: "New version created"
-        # Name of the branch to use, if different from the one that triggered the workflow
-        # ref: gh-pages# optional
-
-    - name: GitHub Push
-      uses: ad-m/github-push-action@v0.5.0
-      with:
-        # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
-        github_token:  $\{{ secrets.GITHUB_TOKEN }}
-        # Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})
-        # repository: # optional, default is 
-        # Destination branch to push changes
-        branch: "gh-pages"
-        # Determines if force push is used
-        force: true # optional
-        # Directory to change to before pushing.
-        directory: "docs/.vuepress/dist" # optional, default is .
+    - name: vuepress-deploy
+      uses: jenkey2011/vuepress-deploy@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        TARGET_REPO: KeenMate/github-pages-test
+        TARGET_BRANCH: gh-pages
+        BUILD_SCRIPT: yarn && yarn build
+        BUILD_DIR: docs/.vuepress/dist/
