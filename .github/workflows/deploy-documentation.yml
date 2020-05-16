@@ -22,23 +22,8 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: "Where am I?"
-      run: ls
-      
-    - name: "Enter docs"
-      run: cd docs
-      
-    - name: "Where am I?"
-      run: ls
-    
     - name: "Run npm i"
       run: npm i
       
-    - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: KeenMate/github-pages-test
-        TARGET_BRANCH: master
-        BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: docs/.vuepress/dist/
+    - name: Build documentation
+      run: npm run docs:build
