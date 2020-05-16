@@ -22,6 +22,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: "Enter docs"
+      run: cd docs
+
     - name: Build and Deploy
       uses: grasilife/github-pages-deploy-action@master
       env:
@@ -29,4 +32,4 @@ jobs:
         BASE_BRANCH: master # The branch the action should deploy from.
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: build # The folder the action should deploy.
-        BUILD_SCRIPT: cd docs && npm install && npm run-script build # The build script the action should run prior to deploying.
+        BUILD_SCRIPT: npm install && npm run-script build # The build script the action should run prior to deploying.
