@@ -24,7 +24,13 @@ jobs:
 
     - name: "Enter docs"
       run: cd docs
-
+      
+    - name: "Where am I?"
+      run: ls
+    
+    - name: "Run npm i"
+      run: npm i
+      
     - name: vuepress-deploy
       uses: jenkey2011/vuepress-deploy@master
       env:
