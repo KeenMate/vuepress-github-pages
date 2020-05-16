@@ -31,8 +31,7 @@ jobs:
       run: npm i
     
     - name: Install Vuepress
-      run: npm install -g vuepress
-
+      run: npm install vuepress
     
     # Runs a set of commands using the runners shell
     - name: Enter docs folder and build vuepress
