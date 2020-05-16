@@ -34,6 +34,17 @@ git push -u origin gh-pages
  - deployment script [deploy-docs.yml](.github/workflows/deploy-docs.yml) contains a step using package called [jenkey2011/vuepress-deploy](https://github.com/jenkey2011/vuepress-deploy)
    - this package does all the mentioned git steps and compilation for you but you can take the code and put it directly into your pipeline if you need
    - the script also contains necessary step ```npm i``` to install Vuepress to be able to build it
+   - deployment script is only started when there is a change provided with push or pull request in *docs/*** folder as defined here 
+``` on:
+  push:
+    branches: [ master ]
+    paths: 
+      - docs/**
+  pull_request:
+    branches: [ master ]
+    paths: 
+     - docs/**
+```
    
    :warning: **It might take several seconds (or tens of seconds) for Github Pages to pickup the change in *gh-pages* branch. Few refreshes of your browser will be neded.** :warning:
    
