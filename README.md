@@ -1,4 +1,4 @@
-# Example Github Pages with Vuepress with Github Actions deployment
+# Example Github Pages with Vuepress and automatic Github Actions deployment
   
   This is an example of how to deploy Github Pages written in Vuepress.
   
