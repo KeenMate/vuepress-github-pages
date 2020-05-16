@@ -31,8 +31,9 @@ git push -u origin gh-pages
  - *package.json* has defined Vuepress as devDependency so it need to be installed with npm i
    - global installation of Vuepress did not work
  - *package.json* also contains run configuration build **"docs:build": "vuepress build docs"** that is used to build the documentation
- - deployment script contains a step using package called [jenkey2011/vuepress-deploy](https://github.com/jenkey2011/vuepress-deploy)
+ - deployment script [deploy-docs.yml](.github/workflows/deploy-docs.yml) contains a step using package called [jenkey2011/vuepress-deploy](https://github.com/jenkey2011/vuepress-deploy)
    - this package does all the mentioned git steps and compilation for you but you can take the code and put it directly into your pipeline if you need
+   - the script also contains necessary step ```npm i``` to install Vuepress to be able to build it
    
    :warning: **It might take several seconds (or tens of seconds) for Github Pages to pickup the change in *gh-pages* branch. Few refreshes of your browser will be neded.** :warning:
    
