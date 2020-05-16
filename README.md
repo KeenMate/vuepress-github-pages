@@ -32,6 +32,20 @@ git push -u origin gh-pages
    - global installation of Vuepress did not work
  - *package.json* also contains run configuration build **"docs:build": "vuepress build docs"** that is used to build the documentation
  - deployment script contains a step using package called [jenkey2011/vuepress-deploy](https://github.com/jenkey2011/vuepress-deploy)
-   - this package does all the mentioned git steps and compilation for you but you can take the code and put it directly into your pipeline if you need it
+   - this package does all the mentioned git steps and compilation for you but you can take the code and put it directly into your pipeline if you need
+   
+   
+ ## vuepress-deploy configuration
+ 
+ ```
+  - name: vuepress-deploy
+      uses: jenkey2011/vuepress-deploy@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} - access token has to be created by someone who has access to the repository in you Profile -> Settings -> Developer settings and stored as a secret into this repository
+        TARGET_REPO: KeenMate/github-pages-test - change this to your repository
+        TARGET_BRANCH: gh-pages - this should state the same
+        BUILD_SCRIPT: npm run docs:build - if you build you code differently change this
+        BUILD_DIR: docs/.vuepress/dist/ - if your Vuepress code is somewhere else change this
+ ```
    
 
