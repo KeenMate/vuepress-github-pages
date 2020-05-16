@@ -1,1 +1,37 @@
-# github-pages-test
+# Example Github Pages with Vuepress
+  
+  This is an example of how to deploy Github Pages written in Vuepress.
+  
+## Structure
+- We have two branches
+  - **master** branch with *docs* folder that contains Vuepress configuration and markdown files
+  - **gh-pages** branch that contains output of Vuepress build process
+    - The name **gh-pages** is mandatory for Github to pick up the branch as the one for Github Pages in your repository settings
+- We also have an deployment script defined for *Github Actions* that runs with every push to master branch and compiles *docs* with Vuepress
+
+## How to create an empty *gh-pages* branch
+ - Script below create a new local branch called *gh-pages* from your *master* branch
+ - Removes everything 
+ - Makes an empty commit
+ - Pushes the empty branch to the origin
+```
+git checkout --orphan gh-pages
+git rm -rf .
+git commit --allow-empty -m "New empty branch"
+git push -u origin gh-pages
+```
+
+## Compilation and deployment process
+ - In principle CD/CI pipeline does three steps
+   - Pulls master branch
+   - Compiles Vuepress documentation
+   - Initialize git in *docs/.vuepress/dist* and because it is an ignored folder it becomes a new repository
+   - Makes a commit of changes in *docs/.vuepress/dist* folder and pushes it to the root of *gh-pages* branch
+ - Compilation expects package.json in the root folder of this repository but it could be place in *docs* folder as well
+ - *package.json* has defined Vuepress as devDependency so it need to be installed with npm i
+   - global installation of Vuepress did not work
+ - *package.json* also contains run configuration build **"docs:build": "vuepress build docs"** that is used to build the documentation
+ - deployment script contains a step using package called [jenkey2011/vuepress-deploy](https://github.com/jenkey2011/vuepress-deploy)
+   - this package does all the mentioned git steps and compilation for you but you can take the code and put it directly into your pipeline if you need it
+   
+
